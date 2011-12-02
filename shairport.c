@@ -25,6 +25,7 @@
  */
 
 #include <fcntl.h>
+#include <signal.h>
 #include "socketlib.h"
 #include "shairport.h"
 #include "hairtunes.h"
@@ -65,6 +66,8 @@ int main(int argc, char **argv)
   int  tUseKnownHWID = FALSE;
   int  tDaemonize = FALSE;
   int  tPort = PORT;
+
+  sigignore(SIGCHLD);
 
   char *arg;
   while ( (arg = *++argv) ) {
