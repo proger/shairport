@@ -1,5 +1,11 @@
+ifeq ($(shell uname), SunOS)
+CFLAGS:=-O2 -Wall
+LDFLAGS:=-lm -lpthread -lssl -lcrypto -lao -lsocket -lnsl
+else
 CFLAGS:=-O2 -Wall $(shell pkg-config --cflags openssl ao)
 LDFLAGS:=-lm -lpthread $(shell pkg-config --libs openssl ao)
+endif
+
 OBJS=socketlib.o shairport.o alac.o hairtunes.o
 all: hairtunes shairport
 
